@@ -3,6 +3,7 @@ import 'package:food_delivery/Home/food_page_body.dart';
 import 'package:food_delivery/utils/constants/color_constants.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/small_text.dart';
+import '../utils/constants/dimension.dart';
 
 class MainFoodPage extends StatefulWidget {
   const MainFoodPage({super.key});
@@ -17,13 +18,17 @@ class _MainFoodPageState extends State<MainFoodPage> {
     return Scaffold(
       body: Column(
         children: [
+          //showing the header
           Container(
-            margin: const EdgeInsets.only(top: 50, bottom: 10),
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            margin: EdgeInsets.only(
+                top: Dimensions.height45, bottom: Dimensions.height15),
+            padding: EdgeInsets.only(
+                left: Dimensions.width20, right: Dimensions.width20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     BigText(
                       text: "Viet Nam",
@@ -35,19 +40,23 @@ class _MainFoodPageState extends State<MainFoodPage> {
                           text: "thiennguyen",
                           color: Colors.black54,
                         ),
-                        const Icon(Icons.arrow_drop_down_rounded)
+                        Icon(
+                          Icons.arrow_drop_down_rounded,
+                          size: Dimensions.iconSize24,
+                        )
                       ],
                     ),
                   ],
                 ),
                 Container(
-                  width: 45,
-                  height: 45,
+                  width: Dimensions.height45,
+                  height: Dimensions.height45,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(Dimensions.radius15),
                     color: AppColors.mainColor,
                   ),
-                  child: const Icon(
+                  child: Icon(
+                    size: Dimensions.iconSize24,
                     Icons.search,
                     color: Colors.white,
                   ),
@@ -55,7 +64,8 @@ class _MainFoodPageState extends State<MainFoodPage> {
               ],
             ),
           ),
-          FoodPageBody(),
+          //showing the body
+          const FoodPageBody(),
         ],
       ),
     );
