@@ -110,20 +110,26 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
           children: [
             //modify quantity of food
             Container(
-              height: 50,
-              width: 100,
+              padding: EdgeInsets.only(
+                top: Dimensions.height20,
+                bottom: Dimensions.height20,
+                left: Dimensions.width20,
+                right: Dimensions.width20,
+              ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radius20),
                 color: Colors.white,
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Icon(
                     Icons.remove,
                     color: AppColors.signColor,
                   ),
+                  SizedBox(width: Dimensions.width10 * 0.5),
                   const BigText(text: "0"),
+                  SizedBox(width: Dimensions.width10 * 0.5),
                   Icon(
                     Icons.add,
                     color: AppColors.signColor,
