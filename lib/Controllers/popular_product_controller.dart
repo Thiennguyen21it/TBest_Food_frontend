@@ -13,7 +13,7 @@ class PopularProductController extends GetxService {
     if (response.statusCode == 200) {
       _popularProductList = [];
       // _popularProductList.addAll();
-      // update();
+      //update()
     } else {}
   }
 }

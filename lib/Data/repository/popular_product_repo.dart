@@ -6,6 +6,6 @@ class PopularProductRepo extends GetxService {
   PopularProductRepo({required this.apitClient});
 
   Future<Response> getPopularProductList() async {
-    return await apitClient.getData("https://..www");
+    return await apitClient.getData("https://www");
   }
 }

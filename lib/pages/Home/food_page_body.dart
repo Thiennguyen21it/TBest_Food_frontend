@@ -31,6 +31,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     });
   }
 
+  // dispose the page controller
   @override
   void dispose() {
     super.dispose();

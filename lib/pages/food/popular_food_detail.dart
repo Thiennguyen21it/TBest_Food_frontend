@@ -137,7 +137,6 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
                 ],
               ),
             ),
-
             //add to cart
             Container(
               padding: EdgeInsets.only(
