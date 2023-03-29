@@ -3,12 +3,13 @@ import 'package:food_delivery/utils/constants/app_constants.dart';
 import 'package:get/get.dart';
 
 //call api method(function) here
-class PopularProductRepo extends GetxService {
+class RecommendedProductRepo extends GetxService {
   final ApitClient apitClient;
-  PopularProductRepo({required this.apitClient});
 
-  Future<Response> getPopularProductList() async {
+  RecommendedProductRepo({required this.apitClient});
+
+  Future<Response> getRecommendedProductList() async {
     return await apitClient
-        .getData(AppConstants.POPULAR_PRODUCT_URI); //end point url
+        .getData(AppConstants.RECOMMENDED_PRODUCT_URI); //end point url
   }
 }
