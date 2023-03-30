@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/constants/dimension.dart';
 import 'package:food_delivery/widgets/app_column.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/expandable_text.dart';
+import 'package:get/get.dart';
 
+import '../../Controllers/popular_product_controller.dart';
 import '../../utils/constants/color_constants.dart';
 import '../../widgets/big_text.dart';
 
 class PopularFoodDetail extends StatefulWidget {
-  const PopularFoodDetail({super.key});
+  int pageId;
+
+  PopularFoodDetail({super.key, required this.pageId});
 
   @override
   State<PopularFoodDetail> createState() => _PopularFoodDetailState();
@@ -17,6 +22,10 @@ class PopularFoodDetail extends StatefulWidget {
 class _PopularFoodDetailState extends State<PopularFoodDetail> {
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductController>().popularProductList[widget.pageId];
+    // print("page is id " + widget.pageId.toString());
+    // print("product is " + product.name);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -28,12 +37,14 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
             child: Container(
               width: double.maxFinite,
               height: Dimensions.popularFoodImgSize,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/images/pho_bo.png"),
-                  fit: BoxFit.cover,
-                ),
-              ),
+              // decoration: BoxDecoration(
+              //   image: DecorationImage(
+              //     image: NetworkImage(AppConstants.BASE_URL +
+              //         AppConstants.POPULAR_PRODUCT_URI +
+              //         product.img),
+              //     fit: BoxFit.cover,
+              //   ),
+              // ),
             ),
           ),
           //back button and cart button
@@ -43,9 +54,13 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
             right: Dimensions.width20,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                AppIcon(icon: Icons.arrow_back_ios),
-                AppIcon(icon: Icons.shopping_cart_outlined)
+              children: [
+                GestureDetector(
+                  onTap: () => Get.toNamed(RouteHelper.getInitial()),
+                  // onTap: () => Navigator.pop(context),
+                  child: const AppIcon(icon: Icons.arrow_back_ios),
+                ),
+                const AppIcon(icon: Icons.shopping_cart_outlined)
               ],
             ),
           ),
@@ -72,18 +87,18 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const AppColumn(
-                    text: "Chicken",
+                  AppColumn(
+                    text: product.name,
                   ),
                   SizedBox(height: Dimensions.height20),
                   const BigText(text: "Introduce"),
                   SizedBox(height: Dimensions.height20),
                   //Expandable text widget
-                  const Expanded(
+                  Expanded(
                     child: SingleChildScrollView(
                       child: ExpandableText(
-                          text:
-                              " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+                        text: product.description!,
+                      ),
                     ),
                   )
                 ],
@@ -149,8 +164,8 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
                 borderRadius: BorderRadius.circular(Dimensions.radius20),
                 color: AppColors.mainColor,
               ),
-              child: const BigText(
-                text: "  \$10 Add to cart",
+              child: BigText(
+                text: " \$ ${product.price}  | Add to cart  ",
                 color: Colors.white,
               ),
             )
