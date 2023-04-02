@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/Controllers/recommended_product_controller.dart';
 import 'package:food_delivery/routes/route_helper.dart';
-import 'package:food_delivery/utils/constants/app_constants.dart';
 import 'package:food_delivery/utils/constants/color_constants.dart';
 import 'package:food_delivery/utils/constants/dimension.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
@@ -64,7 +63,7 @@ class RecommendFoodDetail extends StatelessWidget {
             ),
             backgroundColor: AppColors.yellowColor,
             expandedHeight: 300,
-            flexibleSpace: FlexibleSpaceBar(
+            flexibleSpace: const FlexibleSpaceBar(
                 // background: Image.network(
                 //   AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img!,
                 //   width: double.maxFinite,
