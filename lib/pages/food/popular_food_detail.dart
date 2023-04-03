@@ -5,6 +5,7 @@ import 'package:food_delivery/utils/constants/dimension.dart';
 import 'package:food_delivery/widgets/app_column.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/expandable_text.dart';
+import 'package:food_delivery/widgets/small_text.dart';
 import 'package:get/get.dart';
 
 import '../../Controllers/popular_product_controller.dart';
@@ -27,7 +28,7 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
         Get.find<PopularProductController>().popularProductList[widget.pageId];
 
     Get.find<PopularProductController>()
-        .initProduct(Get.find<CartController>());
+        .initProduct(product, Get.find<CartController>());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -62,7 +63,38 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
                   // onTap: () => Navigator.pop(context),
                   child: const AppIcon(icon: Icons.arrow_back_ios),
                 ),
-                const AppIcon(icon: Icons.shopping_cart_outlined)
+                GetBuilder<PopularProductController>(builder: (controller) {
+                  return Stack(
+                    children: [
+                      const AppIcon(icon: Icons.shopping_cart_outlined),
+                      Get.find<PopularProductController>().totalItems >= 1
+                          ? Positioned(
+                              top: 0,
+                              right: 0,
+                              child: AppIcon(
+                                icon: Icons.circle,
+                                size: 20,
+                                iconColor: Colors.transparent,
+                                backgroundColor: AppColors.mainColor,
+                              ),
+                            )
+                          : Container(),
+                      Get.find<PopularProductController>().totalItems >= 1
+                          ? Positioned(
+                              top: 3,
+                              right: 3,
+                              child: BigText(
+                                text: Get.find<PopularProductController>()
+                                    .totalItems
+                                    .toString(),
+                                size: 12,
+                                color: Colors.white,
+                              ),
+                            )
+                          : Container(),
+                    ],
+                  );
+                }),
               ],
             ),
           ),
@@ -153,7 +185,7 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
                       ),
                     ),
                     SizedBox(width: Dimensions.width10 * 0.5),
-                    BigText(text: popularProduct.quantity.toString()),
+                    BigText(text: popularProduct.inCartItems.toString()),
                     SizedBox(width: Dimensions.width10 * 0.5),
                     GestureDetector(
                       onTap: () {

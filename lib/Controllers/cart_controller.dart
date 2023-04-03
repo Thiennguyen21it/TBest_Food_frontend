@@ -1,18 +1,24 @@
+import 'package:flutter/material.dart';
 import 'package:food_delivery/Data/repository/cart_repo.dart';
 import 'package:food_delivery/models/product_models.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:get/get.dart';
 
 import '../models/cart_models.dart';
+import '../utils/constants/color_constants.dart';
 
 class CartController extends GetxController {
   final CartRepo cartRepo;
   CartController({required this.cartRepo});
 
-  Map<int, CartModel> _items = {};
+  final Map<int, CartModel> _items = {};
   Map<int, CartModel> get items => _items;
+
   void addItem(ProductModel product, int quantity) {
+    var totalQuantity = 0;
     if (_items.containsKey(product.id!)) {
       _items.update(product.id!, (value) {
+        totalQuantity = value.quantity! + quantity;
+
         return CartModel(
           id: value.id,
           name: value.name,
@@ -23,18 +29,59 @@ class CartController extends GetxController {
           time: DateTime.now().toString(),
         );
       });
+
+      if (totalQuantity <= 0) {
+        _items.remove(product.id!);
+      }
     } else {
-      _items.putIfAbsent(product.id!, () {
-        return CartModel(
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          img: product.img,
-          quantity: quantity,
-          isExist: true,
-          time: DateTime.now().toString(),
+      if (quantity > 0) {
+        _items.putIfAbsent(product.id!, () {
+          return CartModel(
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            img: product.img,
+            quantity: quantity,
+            isExist: true,
+            time: DateTime.now().toString(),
+          );
+        });
+      } else {
+        Get.snackbar(
+          "Item count",
+          "You should at least add an item in the cart !",
+          backgroundColor: AppColors.mainColor,
+          colorText: Colors.white,
         );
+      }
+    }
+  }
+
+  bool existInCart(ProductModel product) {
+    if (_items.containsKey(product.id!)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  getQuantity(ProductModel product) {
+    var quantity = 0;
+    if (_items.containsKey(product.id!)) {
+      _items.forEach((key, value) {
+        if (key == product.id) {
+          quantity = value.quantity!;
+        }
       });
     }
+    return quantity;
+  }
+
+  int get TotalItems {
+    var totalQuantity = 0;
+    _items.forEach((key, value) {
+      totalQuantity += value.quantity!;
+    });
+    return totalQuantity;
   }
 }

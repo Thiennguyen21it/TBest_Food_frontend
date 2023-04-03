@@ -51,17 +51,18 @@ class ProductModel {
   String? updatedAt;
   int? typeId;
 
-  ProductModel(
-      {this.id,
-      this.name,
-      this.description,
-      this.price,
-      this.stars,
-      this.img,
-      this.location,
-      this.createdAt,
-      this.updatedAt,
-      this.typeId});
+  ProductModel({
+    this.id,
+    this.name,
+    this.description,
+    this.price,
+    this.stars,
+    this.img,
+    this.location,
+    this.createdAt,
+    this.updatedAt,
+    this.typeId,
+  });
 
   ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -75,19 +76,4 @@ class ProductModel {
     updatedAt = json['updated_at'];
     typeId = json['type_id'];
   }
-
-  // Map<String, dynamic> toJson() {
-  //   final Map<String, dynamic> data = new Map<String, dynamic>();
-  //   data['id'] = this.id;
-  //   data['name'] = this.name;
-  //   data['description'] = this.description;
-  //   data['price'] = this.price;
-  //   data['stars'] = this.stars;
-  //   data['img'] = this.img;
-  //   data['location'] = this.location;
-  //   data['created_at'] = this.createdAt;
-  //   data['updated_at'] = this.updatedAt;
-  //   data['type_id'] = this.typeId;
-  //   return data;
-  // }
 }
