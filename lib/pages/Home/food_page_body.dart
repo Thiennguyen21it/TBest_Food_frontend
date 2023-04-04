@@ -124,7 +124,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
                         onTap: () {
-                          Get.toNamed(RouteHelper.getRecommendedFood(index));
+                          Get.toNamed(RouteHelper.getRecommendedFood(
+                              index, "recommended"));
                         },
                         child: Container(
                           margin: EdgeInsets.only(
@@ -272,6 +273,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         ..setTranslationRaw(0, _height * (1 - _scaleFactor) / 2, 1);
     }
 
+    //popular food list
     return Transform(
       transform: matrix,
       child: Stack(
@@ -279,7 +281,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           //background image container
           GestureDetector(
             onTap: () {
-              Get.toNamed(RouteHelper.getPopularFood(index));
+              Get.toNamed(RouteHelper.getPopularFood(index, "home"));
             },
             child: Container(
               height: Dimensions.pageViewContainerHeight,

@@ -9,14 +9,15 @@ import 'package:food_delivery/widgets/small_text.dart';
 import 'package:get/get.dart';
 
 import '../../Controllers/popular_product_controller.dart';
+import '../../utils/constants/app_constants.dart';
 import '../../utils/constants/color_constants.dart';
 import '../../widgets/big_text.dart';
 import '../cart/cart_page.dart';
 
 class PopularFoodDetail extends StatefulWidget {
   int pageId;
-
-  PopularFoodDetail({super.key, required this.pageId});
+  String page;
+  PopularFoodDetail({super.key, required this.pageId, required this.page});
 
   @override
   State<PopularFoodDetail> createState() => _PopularFoodDetailState();
@@ -30,6 +31,8 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
 
     Get.find<PopularProductController>()
         .initProduct(product, Get.find<CartController>());
+
+    String page = widget.page;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -41,14 +44,14 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
             child: Container(
               width: double.maxFinite,
               height: Dimensions.popularFoodImgSize,
-              // decoration: BoxDecoration(
-              //   image: DecorationImage(
-              //     image: NetworkImage(AppConstants.BASE_URL +
-              //         AppConstants.POPULAR_PRODUCT_URI +
-              //         product.img),
-              //     fit: BoxFit.cover,
-              //   ),
-              // ),
+              decoration: BoxDecoration(
+                  // image: DecorationImage(
+                  //   image: NetworkImage(AppConstants.BASE_URL +
+                  //       AppConstants.POPULAR_PRODUCT_URI +
+                  //       product.img),
+                  //   fit: BoxFit.cover,
+                  // ),
+                  ),
             ),
           ),
           //back button and cart button
@@ -60,46 +63,54 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  onTap: () => Get.toNamed(RouteHelper.getInitial()),
+                  onTap: () {
+                    if (page == "cartpage") {
+                      Get.toNamed(RouteHelper.getCartPage());
+                    } else {
+                      Get.toNamed(RouteHelper.getInitial());
+                    }
+                  },
                   // onTap: () => Navigator.pop(context),
                   child: const AppIcon(icon: Icons.arrow_back_ios),
                 ),
                 GetBuilder<PopularProductController>(
                   builder: (controller) {
-                    return Stack(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Get.to(() => CartPage());
-                          },
-                          child: AppIcon(icon: Icons.shopping_cart_outlined),
-                        ),
-                        Get.find<PopularProductController>().totalItems >= 1
-                            ? Positioned(
-                                top: 0,
-                                right: 0,
-                                child: AppIcon(
-                                  icon: Icons.circle,
-                                  size: 20,
-                                  iconColor: Colors.transparent,
-                                  backgroundColor: AppColors.mainColor,
-                                ),
-                              )
-                            : Container(),
-                        Get.find<PopularProductController>().totalItems >= 1
-                            ? Positioned(
-                                top: 3,
-                                right: 3,
-                                child: BigText(
-                                  text: Get.find<PopularProductController>()
-                                      .totalItems
-                                      .toString(),
-                                  size: 12,
-                                  color: Colors.white,
-                                ),
-                              )
-                            : Container(),
-                      ],
+                    return GestureDetector(
+                      onTap: () {
+                        if (controller.totalItems >= 1) {
+                          Get.toNamed(RouteHelper.getCartPage());
+                        }
+                      },
+                      child: Stack(
+                        children: [
+                          const AppIcon(icon: Icons.shopping_cart_outlined),
+                          Get.find<PopularProductController>().totalItems >= 1
+                              ? Positioned(
+                                  top: 0,
+                                  right: 0,
+                                  child: AppIcon(
+                                    icon: Icons.circle,
+                                    size: 20,
+                                    iconColor: Colors.transparent,
+                                    backgroundColor: AppColors.mainColor,
+                                  ),
+                                )
+                              : Container(),
+                          controller.totalItems >= 1
+                              ? Positioned(
+                                  top: 3,
+                                  right: 3,
+                                  child: BigText(
+                                    text: Get.find<PopularProductController>()
+                                        .totalItems
+                                        .toString(),
+                                    size: 12,
+                                    color: Colors.white,
+                                  ),
+                                )
+                              : Container(),
+                        ],
+                      ),
                     );
                   },
                 ),
