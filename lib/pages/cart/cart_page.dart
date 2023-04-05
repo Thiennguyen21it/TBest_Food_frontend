@@ -231,6 +231,71 @@ class CartPage extends StatelessWidget {
           )
         ],
       ),
+      //bottom bar
+      bottomNavigationBar:
+          GetBuilder<CartController>(builder: (cartController) {
+        return Container(
+          height: Dimensions.bottomBarHeight,
+          padding: EdgeInsets.only(
+              top: Dimensions.height30,
+              left: Dimensions.width20,
+              right: Dimensions.width20),
+          decoration: BoxDecoration(
+            color: AppColors.buttonBackgroundColor,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(Dimensions.radius30),
+              topRight: Radius.circular(Dimensions.radius30),
+            ),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              //modify quantity of food
+              Container(
+                padding: EdgeInsets.only(
+                  top: Dimensions.height20,
+                  bottom: Dimensions.height20,
+                  left: Dimensions.width20,
+                  right: Dimensions.width20,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Dimensions.radius20),
+                  color: Colors.white,
+                ),
+                child: Row(
+                  children: [
+                    SizedBox(width: Dimensions.width10 * 0.5),
+                    BigText(text: "\$ ${cartController.totalAmount}"),
+                    SizedBox(width: Dimensions.width10 * 0.5),
+                  ],
+                ),
+              ),
+              //check out
+              GestureDetector(
+                onTap: () {
+                  //check out
+                },
+                child: Container(
+                  padding: EdgeInsets.only(
+                    top: Dimensions.height15,
+                    bottom: Dimensions.height15,
+                    left: Dimensions.width15,
+                    right: Dimensions.width15,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimensions.radius20),
+                    color: AppColors.mainColor,
+                  ),
+                  child: const BigText(
+                    text: "Check out",
+                    color: Colors.white,
+                  ),
+                ),
+              )
+            ],
+          ),
+        );
+      }),
     );
   }
 }
