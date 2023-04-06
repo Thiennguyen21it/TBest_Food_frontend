@@ -6,7 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:food_delivery/routes/route_helper.dart';
+import 'package:food_delivery/utils/constants/dimension.dart';
 import 'package:get/get.dart';
+
+import '../../Controllers/popular_product_controller.dart';
+import '../../Controllers/recommended_product_controller.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -19,9 +23,15 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   late Animation<double> animation;
   late AnimationController controller;
 
+  Future<void> _loadResources() async {
+    await Get.find<PopularProductController>().getPopularProductList();
+    await Get.find<RecommendedProductController>().getRecommendProductList();
+  }
+
   @override
   void initState() {
     super.initState();
+    _loadResources();
     controller = AnimationController(
       duration: const Duration(seconds: 2),
       vsync: this,
@@ -36,7 +46,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
     Timer(
       const Duration(seconds: 3),
-      () => Get.toNamed(RouteHelper.getInitial()),
+      () => Get.offNamed(RouteHelper.getInitial()),
     );
   }
 
@@ -50,14 +60,14 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
           child: Center(
             child: Image.asset(
               "assets/images/logo part 1.png",
-              width: 300,
+              width: Dimensions.splashImg,
             ),
           ),
         ),
         Center(
           child: Image.asset(
             "assets/images/logo part 2.png",
-            width: 300,
+            width: Dimensions.splashImg,
           ),
         ),
       ]),
