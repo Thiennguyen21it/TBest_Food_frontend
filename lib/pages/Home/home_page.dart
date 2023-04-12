@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/pages/Home/main_food_page.dart';
+import 'package:food_delivery/pages/cart/cart_history.dart';
 import 'package:food_delivery/utils/constants/color_constants.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -17,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   List pages = [
     const MainFoodPage(),
     const Center(child: Text("Next next page")),
-    const Center(child: Text("Next next next page")),
+    const CartHistory(),
     const Center(child: Text("Next next next next page"))
   ];
 
