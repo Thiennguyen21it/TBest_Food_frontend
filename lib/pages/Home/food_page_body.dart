@@ -11,6 +11,7 @@ import 'package:food_delivery/widgets/icon_and_text.dart';
 import 'package:food_delivery/widgets/small_text.dart';
 import 'package:get/get.dart';
 
+import '../../utils/constants/app_constants.dart';
 import '../../utils/constants/dimension.dart';
 
 class FoodPageBody extends StatefulWidget {
@@ -142,15 +143,16 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                   borderRadius: BorderRadius.circular(
                                       Dimensions.radius20),
                                   color: Colors.black38,
-                                  // image: DecorationImage(
-                                  //   image: NetworkImage(
-                                  //     AppConstants.BASE_URL +
-                                  //         AppConstants.UPLOAD_URL +
-                                  //         recommendedProduct
-                                  //             .recommendedProductList[index].img!,
-                                  //   ),
-                                  //   fit: BoxFit.cover,
-                                  // ),
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                      AppConstants.BASE_URL +
+                                          AppConstants.UPLOAD_URL +
+                                          recommendedProduct
+                                              .recommendedProductList[index]
+                                              .img!,
+                                    ),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                               // text section
@@ -292,14 +294,14 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radius30),
                 color: AppColors.yellowColor,
-                // image: DecorationImage(
-                //   image: NetworkImage(
-                //     AppConstants.BASE_URL +
-                //         AppConstants.UPLOAD_URL +
-                //         popularProduct.img!,
-                //   ),
-                //   fit: BoxFit.cover,
-                // ),
+                image: DecorationImage(
+                  image: NetworkImage(
+                    AppConstants.BASE_URL +
+                        AppConstants.UPLOAD_URL +
+                        popularProduct.img!,
+                  ),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),

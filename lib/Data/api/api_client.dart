@@ -4,17 +4,6 @@ import 'package:get/get.dart';
 //write api method(function) here
 
 class ApitClient extends GetConnect implements GetxService {
-  // late String token;
-  // final String appBaseUrl; //server url
-  // late Map<String, String> _mainHeader;
-  // ApitClient({required this.appBaseUrl}) {
-  //   baseUrl = appBaseUrl;
-  //   timeout = const Duration(seconds: 30);
-  //   _mainHeader = {
-  //     'Contents-type': 'application/json; charset=UTF-8',
-  //     'Authorization': 'Bearer $token',
-  //   };
-  // }
   late String token;
   final String appBaseUrl; //server url
   late Map<String, String> _mainHeaders;

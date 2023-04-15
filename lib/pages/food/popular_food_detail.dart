@@ -45,13 +45,13 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
               width: double.maxFinite,
               height: Dimensions.popularFoodImgSize,
               decoration: BoxDecoration(
-                  // image: DecorationImage(
-                  //   image: NetworkImage(AppConstants.BASE_URL +
-                  //       AppConstants.POPULAR_PRODUCT_URI +
-                  //       product.img),
-                  //   fit: BoxFit.cover,
-                  // ),
-                  ),
+                image: DecorationImage(
+                  image: NetworkImage(AppConstants.BASE_URL +
+                      AppConstants.UPLOAD_URL +
+                      product.img!),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
           ),
           //back button and cart button
