@@ -133,8 +133,12 @@ class RecommendFoodDetail extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(
                         left: Dimensions.width20, right: Dimensions.width20),
-                    child: ExpandableText(
-                      text: product.description!,
+                    child: Text(
+                      product.description!,
+                      style: TextStyle(
+                        fontSize: Dimensions.font16,
+                        color: AppColors.paraColor,
+                      ),
                     ),
                   )
                 ],

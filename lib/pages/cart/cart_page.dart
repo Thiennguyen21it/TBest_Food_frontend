@@ -133,13 +133,13 @@ class CartPage extends StatelessWidget {
                                             bottom: Dimensions.height10,
                                           ),
                                           decoration: BoxDecoration(
-                                            // image: DecorationImage(
-                                            //   image: NetworkImage(
-                                            //       AppConstants.BASE_URL +
-                                            //           AppConstants.UPLOAD_URL +
-                                            //           cartList[index].img!),
-                                            //   fit: BoxFit.cover,
-                                            // ),
+                                            image: DecorationImage(
+                                              image: NetworkImage(
+                                                  AppConstants.BASE_URL +
+                                                      AppConstants.UPLOAD_URL +
+                                                      cartList[index].img!),
+                                              fit: BoxFit.cover,
+                                            ),
                                             color: Colors.white,
                                             borderRadius: BorderRadius.circular(
                                               Dimensions.radius20,
