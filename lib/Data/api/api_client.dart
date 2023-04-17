@@ -13,10 +13,18 @@ class ApitClient extends GetConnect implements GetxService {
     timeout = const Duration(seconds: 30);
     token = AppConstants.TOKEN;
     _mainHeaders = {
-      'Content-type': 'application/json;charset = UTF-8',
+      'Content-type': 'application/json; charset = UTF-8',
       'Authorization': 'Bearer $token',
     };
   }
+
+  void updateHeader(String token) {
+    _mainHeaders = {
+      'Content-type': 'application/json; charset = UTF-8',
+      'Authorization': 'Bearer $token',
+    };
+  }
+
   //create get api (get data from server)
   Future<Response> getData(String uri) async {
     try {
@@ -26,5 +34,17 @@ class ApitClient extends GetConnect implements GetxService {
       return Response(statusText: e.toString(), statusCode: 1);
     }
   }
+
   //create post api (send data to server)
+  Future<Response> postData(String uri, dynamic body) async {
+    print(body.toString());
+    try {
+      Response response = await post(uri, body, headers: _mainHeaders);
+      print(response.toString());
+      return response;
+    } catch (e) {
+      print(e.toString());
+      return Response(statusText: e.toString(), statusCode: 1);
+    }
+  }
 }

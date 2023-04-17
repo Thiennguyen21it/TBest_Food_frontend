@@ -27,9 +27,9 @@ class MyApp extends StatelessWidget {
             title: 'Flutter Food App',
             // home: const SplashPage(),
             debugShowCheckedModeBanner: false,
-            // initialRoute: RouteHelper.getSplashPage(),
-            // getPages: RouteHelper.routes,
-            home: SignInPage(),
+            initialRoute: RouteHelper.getSplashPage(),
+            getPages: RouteHelper.routes,
+            // home: SignInPage(),
           );
         });
       },

@@ -27,7 +27,7 @@ class AppTextField extends StatelessWidget {
         right: Dimensions.height20,
       ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(Dimensions.radius30),
+        borderRadius: BorderRadius.circular(Dimensions.radius15),
         color: Colors.white,
         boxShadow: [
           BoxShadow(
@@ -48,17 +48,17 @@ class AppTextField extends StatelessWidget {
           ),
           //focusedBorder
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimensions.radius30),
+            borderRadius: BorderRadius.circular(Dimensions.radius15),
             borderSide: const BorderSide(color: Colors.white, width: 1.0),
           ),
           //enabledBorder
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimensions.radius30),
+            borderRadius: BorderRadius.circular(Dimensions.radius15),
             borderSide: const BorderSide(color: Colors.white, width: 1.0),
           ),
           //border
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimensions.radius30),
+            borderRadius: BorderRadius.circular(Dimensions.radius15),
           ),
         ),
       ),
