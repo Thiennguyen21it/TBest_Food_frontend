@@ -3,6 +3,7 @@ import 'package:food_delivery/pages/Home/home_page.dart';
 import 'package:get/get.dart';
 
 import '../pages/Food/popular_food_detail.dart';
+import '../pages/auth/sign_in_page.dart';
 import '../pages/cart/cart_page.dart';
 import '../pages/splash/splash_page.dart';
 
@@ -12,7 +13,9 @@ class RouteHelper {
   static const String popularFood = "/popular-food";
   static const String recommendedFood = "/recommended-food";
   static const String cartPage = "/cart-page";
+  static const String signIn = "/sign-in";
 
+  static String getSignInPage() => signIn;
   static String getSplashPage() => splashPage;
   static String getInitial() => initial;
   static String getPopularFood(int pageId, String page) =>
@@ -59,6 +62,14 @@ class RouteHelper {
       name: cartPage,
       page: () {
         return const CartPage();
+      },
+      transition: Transition.fadeIn,
+    ),
+    //get sign in page
+    GetPage(
+      name: signIn,
+      page: () {
+        return const SignInPage();
       },
       transition: Transition.fadeIn,
     ),

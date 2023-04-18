@@ -27,6 +27,10 @@ class AuthRepo {
     return sharedPreferences.getString(AppConstants.TOKEN) ?? "None";
   }
 
+  bool userIsLoggedIn() {
+    return sharedPreferences.containsKey(AppConstants.TOKEN);
+  }
+
   //save user token in shared preference
   Future<bool> saveUserToken(String token) async {
     apitClient.token = token;
@@ -41,5 +45,16 @@ class AuthRepo {
     } catch (e) {
       e.toString();
     }
+  }
+
+  bool clearSharedData() {
+    sharedPreferences.remove(AppConstants.TOKEN);
+    sharedPreferences.remove(AppConstants.PASSWORD);
+    sharedPreferences.remove(AppConstants.PHONE);
+
+    apitClient.token = "";
+    apitClient.updateHeader("");
+
+    return true;
   }
 }

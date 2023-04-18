@@ -40,7 +40,6 @@ class SignInPage extends StatelessWidget {
 
         authController.login(phone, password).then((status) {
           if (status.isSuccess) {
-            // print("Login Success");
             Get.toNamed(RouteHelper.getCartPage());
           } else {
             showCustomSnackBar(status.message);

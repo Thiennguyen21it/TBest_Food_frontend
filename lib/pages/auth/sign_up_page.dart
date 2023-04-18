@@ -64,6 +64,7 @@ class SignUpPage extends StatelessWidget {
         );
         authController.registration(signUpBody).then((status) {
           if (status.isSuccess) {
+            print("susccess registration");
             Get.toNamed(RouteHelper.getInitial());
           } else {
             showCustomSnackBar(status.message);
@@ -76,7 +77,7 @@ class SignUpPage extends StatelessWidget {
         backgroundColor: Colors.white,
         body: GetBuilder<AuthController>(
           builder: (_authController) {
-            return !_authController.isLoading
+            return !_authController.isLoading // isLoading = true
                 ? SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Column(
@@ -212,7 +213,7 @@ class SignUpPage extends StatelessWidget {
                       ],
                     ),
                   )
-                : const CustomLoader();
+                : const CustomLoader(); //false
           },
         ));
   }
