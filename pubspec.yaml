@@ -33,7 +33,10 @@ dependencies:
   dots_indicator: ^2.1.0
   flutter:
     sdk: flutter
+  geocoding: ^2.1.0
+  geolocator: ^9.0.2
   get: ^4.6.5
+  google_maps_flutter: ^2.2.5
   intl: ^0.18.0
   persistent_bottom_nav_bar: ^5.0.2
   shared_preferences: ^2.0.11
