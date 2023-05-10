@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/Controllers/cart_controller.dart';
 import 'package:food_delivery/Controllers/popular_product_controller.dart';
-import 'package:food_delivery/pages/auth/sign_in_page.dart';
-import 'package:food_delivery/pages/auth/sign_up_page.dart';
 import 'package:food_delivery/routes/route_helper.dart';
+import 'package:food_delivery/utils/constants/color_constants.dart';
 import 'package:get/get.dart';
 import 'Controllers/recommended_product_controller.dart';
 import 'helper/dependencies.dart' as dependencies;
@@ -29,6 +28,10 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             initialRoute: RouteHelper.getSplashPage(),
             getPages: RouteHelper.routes,
+            theme: ThemeData(
+              primaryColor: AppColors.mainColor,
+              fontFamily: 'Poppins',
+            ),
             // home: SignInPage(),
           );
         });

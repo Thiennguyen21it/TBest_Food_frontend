@@ -4,6 +4,7 @@ import 'package:food_delivery/pages/address/add_address_page.dart';
 import 'package:get/get.dart';
 
 import '../pages/Food/popular_food_detail.dart';
+import '../pages/address/pick_address_map.dart';
 import '../pages/auth/sign_in_page.dart';
 import '../pages/cart/cart_page.dart';
 import '../pages/splash/splash_page.dart';
@@ -16,6 +17,7 @@ class RouteHelper {
   static const String cartPage = "/cart-page";
   static const String signIn = "/sign-in";
   static const String addAddress = "/add-address";
+  static const String pickAddressMap = "/pick-address";
 
   static String getSignInPage() => signIn;
   static String getSplashPage() => splashPage;
@@ -26,6 +28,7 @@ class RouteHelper {
       "$recommendedFood?pageId=$pageId&page=$page";
   static String getCartPage() => cartPage;
   static String getAddressPage() => addAddress;
+  static String getPickAddressPage() => pickAddressMap;
 
   static List<GetPage> routes = [
     //get splash page
@@ -40,7 +43,8 @@ class RouteHelper {
         name: initial,
         page: () {
           return const HomePage();
-        }),
+        },
+        transition: Transition.fade),
     //get popular food detail page
     GetPage(
       name: popularFood,
@@ -83,6 +87,15 @@ class RouteHelper {
       name: addAddress,
       page: () {
         return const AddAdressPage();
+      },
+      transition: Transition.fadeIn,
+    ),
+    //get pick address page
+    GetPage(
+      name: pickAddressMap,
+      page: () {
+        PickAddressMap _pickAddress = Get.arguments;
+        return _pickAddress;
       },
       transition: Transition.fadeIn,
     ),

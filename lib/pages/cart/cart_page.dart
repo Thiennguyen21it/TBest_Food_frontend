@@ -308,11 +308,13 @@ class CartPage extends StatelessWidget {
                         //check out
                         if (Get.find<AuthController>().userIsLoggedIn()) {
                           print("Logged in ?");
-                          // cartController.addToHistory();
+                          cartController.addToHistory();
                           if (Get.find<LocationController>()
                               .addressList
                               .isEmpty) {
                             Get.toNamed(RouteHelper.getAddressPage());
+                          } else {
+                            Get.offNamed(RouteHelper.getInitial());
                           }
                         } else {
                           Get.toNamed(RouteHelper.getSignInPage());
